@@ -1,4 +1,5 @@
 import { Router, LocationProvider } from "@reach/router";
+import { SnackbarProvider } from "notistack";
 
 import Main from "./components/Main";
 import Header from "./components/Header";
@@ -20,25 +21,32 @@ getSession();
 
 function App() {
   return (
-    <TextProvider>
-      <MenuProvider>
-        <FullScreenMapProvider>
-          <FullScreenMap />
-          <Main>
-            <LocationProvider>
-              <Header />
-            </LocationProvider>
-            <Router>
-              <Home path="/" />
-              <PathPage path="/path/:pathId" />
-              <CreatePathPage path="/create-path" />
-              <SearchedPaths path="/searched-paths" />
-              <ContributedPaths path="/contributed-paths" />
-            </Router>
-          </Main>
-        </FullScreenMapProvider>
-      </MenuProvider>
-    </TextProvider>
+    <SnackbarProvider
+      anchorOrigin={{
+        vertical: "bottom",
+        horizontal: "right",
+      }}
+    >
+      <TextProvider>
+        <MenuProvider>
+          <FullScreenMapProvider>
+            <FullScreenMap />
+            <Main>
+              <LocationProvider>
+                <Header />
+              </LocationProvider>
+              <Router>
+                <Home path="/" />
+                <PathPage path="/path/:pathId" />
+                <CreatePathPage path="/create-path" />
+                <SearchedPaths path="/searched-paths" />
+                <ContributedPaths path="/contributed-paths" />
+              </Router>
+            </Main>
+          </FullScreenMapProvider>
+        </MenuProvider>
+      </TextProvider>
+    </SnackbarProvider>
   );
 }
 

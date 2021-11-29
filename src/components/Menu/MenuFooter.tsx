@@ -1,20 +1,12 @@
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent } from "react";
 
 import { Box, Select, MenuItem, Typography } from "@mui/material";
 
 import { Lang, useTextStore, useTextDispatch } from "../../hooks/useText";
 
 const MenuFooter: FunctionComponent<{}> = () => {
-  const { language } = useTextStore();
-  const [lang, setLang] = useState<Lang>("AMH");
+  const { language, lang } = useTextStore();
   const dispatch = useTextDispatch();
-
-  useEffect(() => {
-    dispatch({
-      payload: lang,
-      type: "CHANGE_LANG",
-    });
-  }, [lang]);
 
   return (
     <Box
@@ -31,9 +23,14 @@ const MenuFooter: FunctionComponent<{}> = () => {
         value={lang}
         size="small"
         label="Language"
-        onChange={(e) => setLang(e.target.value as Lang)}
+        onChange={(e) =>
+          dispatch({
+            type: "CHANGE_LANG",
+            payload: e.target.value as Lang,
+          })
+        }
       >
-        <MenuItem value="AMH">Amharic</MenuItem>
+        <MenuItem value="AMH">አማርኛ</MenuItem>
         <MenuItem value="ENG">English</MenuItem>
       </Select>
     </Box>

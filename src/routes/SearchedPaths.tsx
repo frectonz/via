@@ -11,7 +11,6 @@ const SearchedPaths = (_: RouteComponentProps) => {
   return (
     <>
       <h3>{paths.length === 0 ? noPathsSearched : searchedPaths}</h3>
-
       <PathCardList paths={paths} />
     </>
   );

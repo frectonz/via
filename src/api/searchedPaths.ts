@@ -2,11 +2,11 @@ import Path from "./Path";
 
 export function addPath(path: Path) {
   const paths = getPaths();
-  paths.push(path);
-  const newPath: Path[] = [];
+  paths.push(path._id);
+  const newPath: string[] = [];
 
   paths.forEach((p) => {
-    const exists = newPath.filter((np) => np._id === p._id).length === 1;
+    const exists = newPath.filter((np) => np === p).length === 1;
 
     if (!exists) {
       newPath.push(p);
@@ -18,6 +18,6 @@ export function addPath(path: Path) {
 
 export function getPaths() {
   const stringified = localStorage.getItem("searchedPaths");
-  const paths = stringified ? (JSON.parse(stringified) as Path[]) : [];
+  const paths = stringified ? (JSON.parse(stringified) as string[]) : [];
   return paths;
 }
