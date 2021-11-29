@@ -8,7 +8,9 @@ const ContributedPaths = (_: RouteComponentProps) => {
 
   return (
     <>
-      <h3>Contributed Paths</h3>
+      <h3>
+        {paths.length === 0 ? "No Paths Contributed" : "Contributed Paths"}
+      </h3>
       <PathCardList paths={paths} />
     </>
   );

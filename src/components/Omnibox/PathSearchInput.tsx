@@ -49,7 +49,6 @@ const PathSearchInput: FunctionComponent<{}> = () => {
             dispatch({ type: "SET_FOCUSED", payload: "from" });
             dispatch({ type: "SET_FROM_COMPLETED", payload: false });
           }}
-          autoFocus={focused === "from"}
         />
       </Box>
 
@@ -70,7 +69,6 @@ const PathSearchInput: FunctionComponent<{}> = () => {
             dispatch({ type: "SET_FOCUSED", payload: "to" });
             dispatch({ type: "SET_TO_COMPLETED", payload: false });
           }}
-          autoFocus={focused === "to"}
         />
       </Box>
     </Paper>
