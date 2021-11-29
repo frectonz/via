@@ -33,7 +33,7 @@ const PlacesAutocomplete: FunctionComponent<PlacesAutocompleteProps> = ({
         value && mapDispatch({ type: "ADD_PLACE", payload: value });
       }}
       options={places || []}
-      noOptionsText="Loading.."
+      noOptionsText=""
       getOptionLabel={(p) => p.displayName}
       renderInput={(params) => (
         <TextField

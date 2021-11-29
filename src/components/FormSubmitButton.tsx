@@ -3,8 +3,10 @@ import { FunctionComponent } from "react";
 import { Box, Button } from "@mui/material";
 
 import submitPath from "../api/submitPath";
-import { Path, useNewPathFormStore } from "../hooks/useNewPathForm";
 import { addPath } from "../api/contributedPaths";
+
+import { useTextStore } from "../hooks/useText";
+import { Path, useNewPathFormStore } from "../hooks/useNewPathForm";
 
 const validatePath = (path: Path) => {
   const addressExists = path.from && path.to;
@@ -18,6 +20,7 @@ const validatePath = (path: Path) => {
 };
 
 const FormSubmitButton: FunctionComponent<{}> = () => {
+  const { submitText } = useTextStore();
   const path = useNewPathFormStore();
 
   const handleSubmit = () => {
@@ -33,7 +36,7 @@ const FormSubmitButton: FunctionComponent<{}> = () => {
   return (
     <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
       <Button type="submit" onClick={handleSubmit}>
-        Submit
+        {submitText}
       </Button>
     </Box>
   );

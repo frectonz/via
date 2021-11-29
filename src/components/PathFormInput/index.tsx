@@ -9,11 +9,18 @@ import {
   useNewPathFormStore,
   useNewPathFormDispatch,
 } from "../../hooks/useNewPathForm";
+import { useTextStore } from "../../hooks/useText";
 import { useFullScreenMapDispatch } from "../../hooks/useFullScreenMap";
 
 const PathFormInput: FunctionComponent<PathFormInputProps> = () => {
   const dispatch = useNewPathFormDispatch();
   const { from, to } = useNewPathFormStore();
+  const {
+    from: fromStr,
+    to: toStr,
+    startingPoint,
+    destinationPoint,
+  } = useTextStore();
 
   const mapDispatch = useFullScreenMapDispatch();
 
@@ -34,20 +41,20 @@ const PathFormInput: FunctionComponent<PathFormInputProps> = () => {
             payload: p,
           });
         }}
-        placeholder="From"
-        helperText="Starting point"
+        placeholder={fromStr}
+        helperText={startingPoint}
       />
 
       <PlacesAutocomplete
         place={to}
-        placeholder="To"
         setPlace={(p) => {
           dispatch({
             type: "SET_TO",
             payload: p,
           });
         }}
-        helperText="Destination point"
+        placeholder={toStr}
+        helperText={destinationPoint}
       />
     </Stack>
   );

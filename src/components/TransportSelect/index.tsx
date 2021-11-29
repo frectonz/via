@@ -23,6 +23,7 @@ import {
   useNewPathFormStore,
   useNewPathFormDispatch,
 } from "../../hooks/useNewPathForm";
+import { useTextStore } from "../../hooks/useText";
 
 const TransportSelect: FunctionComponent<{}> = () => {
   const [selected, setSelected] = useState<SelectedTransport>({
@@ -34,12 +35,22 @@ const TransportSelect: FunctionComponent<{}> = () => {
   const dispatch = useNewPathFormDispatch();
   const { busPrice, ladaPrice, minBusPrice } = useNewPathFormStore();
 
+  const {
+    bus,
+    ladaTaxi,
+    miniBusTaxi,
+    selectTransportationType,
+    busPrice: busPriceText,
+    ladaTaxiPrice,
+    miniBusTaxiPrice,
+  } = useTextStore();
+
   return (
     <Box mt={2}>
       <FormControl sx={{ my: 1 }}>
         <Stack direction="row" spacing={2}>
           <TransportOption
-            title="Lada Taxi"
+            title={ladaTaxi}
             selected={selected.ladaSelected}
             onClick={() => {
               selected.ladaSelected &&
@@ -54,7 +65,7 @@ const TransportSelect: FunctionComponent<{}> = () => {
           </TransportOption>
 
           <TransportOption
-            title="Bus"
+            title={bus}
             selected={selected.busSelected}
             onClick={() => {
               selected.busSelected &&
@@ -66,7 +77,7 @@ const TransportSelect: FunctionComponent<{}> = () => {
           </TransportOption>
 
           <TransportOption
-            title="Minibus Taxi"
+            title={miniBusTaxi}
             selected={selected.minibusSelected}
             onClick={() => {
               selected.minibusSelected &&
@@ -80,7 +91,7 @@ const TransportSelect: FunctionComponent<{}> = () => {
             <MiniBusIcon sx={iconStyle} />
           </TransportOption>
         </Stack>
-        <FormHelperText>Select the transportation type</FormHelperText>
+        <FormHelperText>{selectTransportationType}</FormHelperText>
       </FormControl>
 
       <>
@@ -90,7 +101,7 @@ const TransportSelect: FunctionComponent<{}> = () => {
             onChange={(newValue) =>
               dispatch({ type: "SET_LADA", payload: newValue })
             }
-            label="Lada Fare"
+            label={ladaTaxiPrice}
           />
         )}
         {selected.busSelected && (
@@ -99,7 +110,7 @@ const TransportSelect: FunctionComponent<{}> = () => {
             onChange={(newValue) =>
               dispatch({ type: "SET_BUS", payload: newValue })
             }
-            label="Bus Fare"
+            label={busPriceText}
           />
         )}
         {selected.minibusSelected && (
@@ -108,7 +119,7 @@ const TransportSelect: FunctionComponent<{}> = () => {
             onChange={(newValue) =>
               dispatch({ type: "SET_MINIBUS", payload: newValue })
             }
-            label="Mini Bus Fare"
+            label={miniBusTaxiPrice}
           />
         )}
       </>

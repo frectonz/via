@@ -29,6 +29,7 @@ import {
 
 import usePath from "../hooks/usePath";
 import { addPath } from "../api/searchedPaths";
+import { useTextStore } from "../hooks/useText";
 
 const PathPage = ({
   pathId,
@@ -36,6 +37,7 @@ const PathPage = ({
   pathId: string;
 }>) => {
   const { data: path } = usePath(pathId || "");
+  const { miniBusTaxiPrice, busPrice, ladaTaxiPrice } = useTextStore();
 
   if (path) {
     addPath(path);
@@ -86,7 +88,7 @@ const PathPage = ({
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              secondary="Minibus Price"
+              secondary={miniBusTaxiPrice}
               primary={`${path.minBusPrice} Birr`}
             />
           </ListItem>
@@ -100,7 +102,7 @@ const PathPage = ({
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              secondary="Bus Price"
+              secondary={busPrice}
               primary={`${path.busPrice} Birr`}
             />
           </ListItem>
@@ -114,7 +116,7 @@ const PathPage = ({
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              secondary="Lada Price"
+              secondary={ladaTaxiPrice}
               primary={`${path.ladaPrice} Birr`}
             />
           </ListItem>

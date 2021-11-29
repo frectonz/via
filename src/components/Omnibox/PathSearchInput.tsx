@@ -11,7 +11,7 @@ import {
   usePathSearchInputStore,
   usePathSearchInputDispatch,
 } from "../../hooks/usePathSearchInput";
-import { useFullScreenMapDispatch } from "../../hooks/useFullScreenMap";
+import { useTextStore } from "../../hooks/useText";
 
 const boxStyle: SxProps = {
   p: "2px 4px",
@@ -28,17 +28,17 @@ const iconStyle: SxProps = { p: "10px", fontSize: "3rem" };
 
 const PathSearchInput: FunctionComponent<{}> = () => {
   const dispatch = usePathSearchInputDispatch();
-  const { to, from, focused } = usePathSearchInputStore();
+  const { to, from } = usePathSearchInputStore();
+  const { to: toString, from: fromString } = useTextStore();
 
   return (
     <Paper>
       <Box sx={boxStyle}>
         <StartLocationIcon color="primary" sx={iconStyle} />
         <InputBase
-          sx={inputStyle}
-          placeholder="From"
-          inputProps={{ "aria-label": "from address" }}
           value={from}
+          sx={inputStyle}
+          placeholder={fromString}
           onChange={(e) => {
             dispatch({
               type: "SET_FROM",
@@ -55,10 +55,9 @@ const PathSearchInput: FunctionComponent<{}> = () => {
       <Box sx={boxStyle}>
         <DestLocationIcon color="primary" sx={iconStyle} />
         <InputBase
-          sx={inputStyle}
-          placeholder="To"
-          inputProps={{ "aria-label": "to address" }}
           value={to}
+          sx={inputStyle}
+          placeholder={toString}
           onChange={(e) => {
             dispatch({
               type: "SET_TO",

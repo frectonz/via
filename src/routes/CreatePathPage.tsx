@@ -7,13 +7,16 @@ import PathFormInput from "../components/PathFormInput";
 import TransportSelect from "../components/TransportSelect";
 import FormSubmitButton from "../components/FormSubmitButton";
 
+import { useTextStore } from "../hooks/useText";
 import { NewPathFormStoreProvider } from "../hooks/useNewPathForm";
 
 const CreatePathPage = (_: RouteComponentProps) => {
+  const { createNewPath } = useTextStore();
+
   return (
     <NewPathFormStoreProvider>
       <Paper sx={{ p: 1, bgcolor: "whitesmoke" }}>
-        <h4>Create new path</h4>
+        <h4>{createNewPath}</h4>
         <PathFormInput />
         <TransportSelect />
         <ImageInput />

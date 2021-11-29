@@ -16,6 +16,7 @@ import {
 import { SxProps } from "@mui/system";
 
 import Path from "../api/Path";
+import { useTextStore } from "../hooks/useText";
 import { navigate } from "@reach/router";
 
 const boxStyle: SxProps = {
@@ -29,6 +30,8 @@ interface PathCardListProps {
 }
 
 const PathCardList: FunctionComponent<PathCardListProps> = ({ paths }) => {
+  const { viewPath } = useTextStore();
+
   return (
     <Box sx={{ bgcolor: "whitesmoke", my: 2 }}>
       {paths.map((path, i) => (
@@ -51,7 +54,7 @@ const PathCardList: FunctionComponent<PathCardListProps> = ({ paths }) => {
               color="primary"
               onClick={() => navigate(`/path/${path._id}`)}
             >
-              View
+              {viewPath}
             </Button>
           </CardActions>
         </Card>

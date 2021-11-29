@@ -9,6 +9,7 @@ import PathPage from "./routes/PathPage";
 import SearchedPaths from "./routes/SearchedPaths";
 import CreatePathPage from "./routes/CreatePathPage";
 
+import { TextProvider } from "./hooks/useText";
 import { MenuProvider } from "./hooks/useMenu";
 import { FullScreenMapProvider } from "./hooks/useFullScreenMap";
 
@@ -19,23 +20,25 @@ getSession();
 
 function App() {
   return (
-    <MenuProvider>
-      <FullScreenMapProvider>
-        <FullScreenMap />
-        <Main>
-          <LocationProvider>
-            <Header />
-          </LocationProvider>
-          <Router>
-            <Home path="/" />
-            <PathPage path="/path/:pathId" />
-            <CreatePathPage path="/create-path" />
-            <SearchedPaths path="/searched-paths" />
-            <ContributedPaths path="/contributed-paths" />
-          </Router>
-        </Main>
-      </FullScreenMapProvider>
-    </MenuProvider>
+    <TextProvider>
+      <MenuProvider>
+        <FullScreenMapProvider>
+          <FullScreenMap />
+          <Main>
+            <LocationProvider>
+              <Header />
+            </LocationProvider>
+            <Router>
+              <Home path="/" />
+              <PathPage path="/path/:pathId" />
+              <CreatePathPage path="/create-path" />
+              <SearchedPaths path="/searched-paths" />
+              <ContributedPaths path="/contributed-paths" />
+            </Router>
+          </Main>
+        </FullScreenMapProvider>
+      </MenuProvider>
+    </TextProvider>
   );
 }
 

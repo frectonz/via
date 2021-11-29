@@ -18,11 +18,11 @@ import {
   useNewPathFormStore,
   useNewPathFormDispatch,
 } from "../hooks/useNewPathForm";
+import { useTextStore } from "../hooks/useText";
 
-interface ImageInputProps {}
-
-const ImageInput: FunctionComponent<ImageInputProps> = () => {
+const ImageInput: FunctionComponent<{}> = () => {
   const { images } = useNewPathFormStore();
+  const { inputImages } = useTextStore();
   const dispatch = useNewPathFormDispatch();
 
   const handleChange = async (e: any) => {
@@ -100,7 +100,7 @@ const ImageInput: FunctionComponent<ImageInputProps> = () => {
         </ImageListItem>
       </ImageList>
 
-      <FormHelperText>Path Images"</FormHelperText>
+      <FormHelperText>{inputImages}</FormHelperText>
     </FormControl>
   );
 };

@@ -8,7 +8,11 @@ import {
 } from "@mui/icons-material";
 import { List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
 
+import { useTextStore } from "../../hooks/useText";
+
 const MenuLinks: FunctionComponent<{}> = () => {
+  const { contributedPaths, searchedPaths } = useTextStore();
+
   return (
     <List>
       <ListItem
@@ -20,7 +24,7 @@ const MenuLinks: FunctionComponent<{}> = () => {
         <ListItemIcon sx={{ justifyContent: "center" }}>
           <PlacesIcon />
         </ListItemIcon>
-        <ListItemText primary="Searched Paths" />
+        <ListItemText primary={searchedPaths} />
       </ListItem>
       <ListItem
         button
@@ -31,7 +35,7 @@ const MenuLinks: FunctionComponent<{}> = () => {
         <ListItemIcon sx={{ justifyContent: "center" }}>
           <ReviewIcon />
         </ListItemIcon>
-        <ListItemText primary="Your Contributions" />
+        <ListItemText primary={contributedPaths} />
       </ListItem>
     </List>
   );
