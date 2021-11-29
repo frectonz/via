@@ -34,19 +34,24 @@ const PathCardList: FunctionComponent<PathCardListProps> = ({ paths }) => {
   return (
     <Box sx={{ bgcolor: "whitesmoke", my: 2 }}>
       {paths.map((path, i) => (
-        <PathCard key={i} pathId={path} />
+        <PathCardFromId key={i} pathId={path} />
       ))}
     </Box>
   );
 };
 
-const PathCard: FunctionComponent<{ pathId: string }> = ({ pathId }) => {
-  const { viewPath } = useTextStore();
+const PathCardFromId: FunctionComponent<{ pathId: string }> = ({ pathId }) => {
   const { data: path } = usePath(pathId);
 
   if (!path) {
     return <></>;
   }
+
+  return <PathCard path={path} />;
+};
+
+export const PathCard: FunctionComponent<{ path: Path }> = ({ path }) => {
+  const { viewPath } = useTextStore();
 
   return (
     <Card>
@@ -71,5 +76,4 @@ const PathCard: FunctionComponent<{ pathId: string }> = ({ pathId }) => {
     </Card>
   );
 };
-
 export default PathCardList;
