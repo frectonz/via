@@ -1,11 +1,11 @@
 {
   "theme_color": "#5794F0",
-  "background_color": "#5794F0",
+  "background_color": "#ffffff",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "name": "via",
-  "short_name": "via",
+  "name": "Via",
+  "short_name": "Via",
   "description": "A path mapping tool for Ethiopian roads",
   "icons": [
     {
